@@ -10,7 +10,13 @@ kube_ver_setting = "1.28.2-1.1"
 # - 'calico' Install calico
 # - 'cilium'  Install cilium using helm
 # - 'ciliumEXP' Install cilium CNI using the binary installer
-cni_setting = "cilium"
+cni_setting = "flannel"
+
+# CRI Supported Settings -
+# - 'containerd' 
+# Experimental CRI Support 
+# CRI-O 
+# Docker Engine
 cri_setting = "containerd"
 
 Vagrant.configure("2") do |config|

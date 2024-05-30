@@ -113,19 +113,10 @@
           path: /lib/systemd/system/kubelet.service.d/10-kubeadm.conf
           line: Environment="KUBELET_EXTRA_ARGS=--node-ip={{ output.stdout }}"
 
-      - name: Initialize the Kubernetes cluster using kubeadm
+      - name: Initialize the Kubernetes cluster using kubeadm flannel
         command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --pod-network-cidr=10.244.0.0/16
-        when: cni == 'flannel' 
-
-      - name: Initialize the Kubernetes cluster using kubeadm
-        command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --pod-network-cidr=10.244.0.0/16
-        when: cni == 'cilium' 
-
-      - name: Initialize the Kubernetes cluster using kubeadm
-        command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --pod-network-cidr=10.244.0.0/16
-        when: cni == 'ciliumEXP'
-
-
+        when: cni == 'cilium' or cni == 'flannel' or cni == 'ciliumEXP'
+      
       - name: Initialize the Kubernetes cluster using kubeadm
         command: kubeadm init --apiserver-advertise-address="192.168.56.10" --apiserver-cert-extra-sans="192.168.56.10" --pod-network-cidr=192.168.0.0/16
         when: cni == 'calico' 
