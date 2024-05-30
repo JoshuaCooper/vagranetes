@@ -44,6 +44,7 @@ Vagrant.configure("2") do |config|
                 ansible.playbook = "lib/node-playbook.yml"
                 ansible.extra_vars = {
                   cni: cni_setting,
+                  cri: cri_setting,
                   kubeversion: kube_ver_setting
                 }
             end
