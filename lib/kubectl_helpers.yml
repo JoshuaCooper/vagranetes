@@ -1,0 +1,10 @@
+- name: Install Kubectl Helpers/Add-ons
+  apt:
+    name:
+      - snapd
+    state: present
+
+- name: Install k9s
+  community.general.snap:
+    name:
+      - k9s
